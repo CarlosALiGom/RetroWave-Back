@@ -49,6 +49,7 @@ describe("Given a generalError errorMiddleware", () => {
       const customError = new CustomError(404, "Endpoint not found");
       const expectedStatus = 404;
       const message = "Endpoint not found";
+
       generalError(
         customError,
         req as Request,
