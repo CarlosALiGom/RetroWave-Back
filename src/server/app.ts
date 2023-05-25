@@ -3,7 +3,7 @@ import morgan from "morgan";
 import express from "express";
 import cors from "cors";
 import { pingController } from "./controllers/ping/pingController.js";
-import path from "./path.js";
+import paths from "./paths/paths.js";
 
 const allowedOrigins = process.env.ALLOWED_ORIGIN;
 
@@ -21,6 +21,6 @@ app.disable("x-powered-by");
 
 app.use(morgan("dev"));
 
-app.use(path.pingController, pingController);
+app.use(paths.pingController, pingController);
 
 export default app;
