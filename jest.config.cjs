@@ -9,7 +9,7 @@ module.exports = {
     "!src/server/routers/**/*",
     "!src/database/connectToDatabase.ts",
     "!src/loadEnviroments.ts",
-    "!src/server/index.ts",
+    "!src/database/models/User.ts",
   ],
   testPathIgnorePatterns: ["node_modules"],
 };
