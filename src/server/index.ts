@@ -1,4 +1,4 @@
-import "../loadEnviroments";
+import "../loadEnviroments.js";
 import morgan from "morgan";
 import express from "express";
 import cors from "cors";

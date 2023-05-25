@@ -7,8 +7,8 @@ const debugError = createDebug(
 );
 
 export const notFoundError = (
-  req: Request,
-  res: Response,
+  _req: Request,
+  _res: Response,
   next: NextFunction
 ) => {
   const error = new CustomError(404, "Endpoint not found");
@@ -18,7 +18,7 @@ export const notFoundError = (
 
 export const generalError = (
   error: CustomError,
-  req: Request,
+  _req: Request,
   res: Response,
   _next: NextFunction
 ) => {
