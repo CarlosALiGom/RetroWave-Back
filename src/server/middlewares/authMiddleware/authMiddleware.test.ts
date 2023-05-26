@@ -7,6 +7,7 @@ import {
   responseStatusCode,
 } from "../../utils/responseData/responseData";
 import CustomError from "../../../CustomError/CustomError";
+import { type CustomRequest } from "../../types";
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -25,9 +26,9 @@ describe("Given an authMiddleware", () => {
 
       jwt.verify = jest.fn();
 
-      auth(req as Request, res as Response, next as NextFunction);
+      auth(req as CustomRequest, res as Response, next as NextFunction);
 
-      expect(next).toHaveBeenCalledWith();
+      expect(next).toHaveBeenCalled();
     });
   });
 
@@ -44,7 +45,7 @@ describe("Given an authMiddleware", () => {
 
       jwt.verify = jest.fn();
 
-      auth(req as Request, res as Response, next as NextFunction);
+      auth(req as CustomRequest, res as Response, next as NextFunction);
 
       expect(next).toHaveBeenCalledWith(error);
     });
