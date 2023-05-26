@@ -24,6 +24,14 @@ export const userDataMock: UserDataStructure = {
 export const juditTokenMock =
   "$2y$10$U.6UzF4tD9/AZapllmhqdOZZjBSEqD82QEzMoyRKtaIvPGxtz52t2";
 
+export const adminTokenMock =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJzdWIiOiI2NDcwN2RkZjJkMDljZDE1NDBmMGZhYWYiLCJpYXQiOjE2ODUxMjYwMDksImV4cCI6MTY4NTM4NTIwOX0.VY0qsMFK72Np45-Jd57hxVwBiWIqjoLiOE7BozTnLUc";
+
+export const adminUserDbMock: UserCredentials = {
+  username: "admin",
+  password: "$2y$10$axrXmTPso405LBs/NPfjquRMBxnf472njEekDLbnulCE35I4aVsyu",
+};
+
 export const tokenMock = {
   token: "token",
 };
