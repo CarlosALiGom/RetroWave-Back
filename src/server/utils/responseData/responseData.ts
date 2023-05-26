@@ -15,6 +15,7 @@ export const responseMessage: ResponseMessageStructure = {
   ok: "OK",
   badRequest: "Validation Failed",
   unauthorized: "Wrong credentials",
+  missingToken: "Missing Token",
   notFound: "Not found",
   generalError: "General Error",
 };
