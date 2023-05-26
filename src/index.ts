@@ -1,8 +1,8 @@
 import "./loadEnviroments.js";
 import createDebug from "debug";
-import chalk from "chalk";
 import app from "./server/app.js";
 import connectToDatabase from "./database/connectToDatabase.js";
+import chalk from "chalk";
 
 const debug = createDebug("retroWave-api:root");
 
