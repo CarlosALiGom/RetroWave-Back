@@ -16,6 +16,7 @@ export interface ResponseMessageStructure {
   ok: string;
   badRequest: string;
   unauthorized: string;
+  missingToken: string;
   notFound: string;
   generalError: string;
 }
