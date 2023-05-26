@@ -7,6 +7,10 @@ import User from "../../../database/models/User";
 import { user, userData } from "../../../mocks/mocks";
 import { token } from "morgan";
 import CustomError from "../../../CustomError/CustomError.js";
+import {
+  responseMessage,
+  responseStatusCode,
+} from "../../utils/responseData/responseData";
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -30,7 +34,7 @@ describe("Given a loginUser controller", () => {
       exec: jest.fn().mockResolvedValue(userData),
     });
     test("Then it should call the status method of the response with a 200", async () => {
-      const expectedStatusCode = 200;
+      const expectedStatusCode = responseStatusCode.ok;
 
       await loginUser(req as UserCredentialsRequest, res as Response, next);
 
@@ -46,7 +50,10 @@ describe("Given a loginUser controller", () => {
 
   describe("When it receives a non valid user credentials", () => {
     test("Then it should call the next function with a custom error with status 401 and message 'Wrong credential'", async () => {
-      const error = new CustomError(401, "Wrong credentials");
+      const error = new CustomError(
+        responseStatusCode.unauthorized,
+        responseMessage.unauthorized
+      );
 
       User.findOne = jest.fn().mockReturnValue({
         exec: jest.fn().mockResolvedValue(undefined),
