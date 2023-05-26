@@ -1,5 +1,7 @@
 export interface PathsStructure {
   pingController: string;
+  user: string;
+  login: string;
 }
 
 export interface ResponseStatusCodeStructure {

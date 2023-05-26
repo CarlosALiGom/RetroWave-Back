@@ -20,11 +20,13 @@ export const loginUser = async (
   try {
     const user = await User.findOne({ username }).exec();
 
-    if (!user || !(await bcrypt.compare(user.password, password))) {
-      throw new CustomError(
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+      const error = new CustomError(
         responseStatusCode.unauthorized,
         responseMessage.unauthorized
       );
+
+      throw error;
     }
 
     const tokenPayload: JwtPayload = {
