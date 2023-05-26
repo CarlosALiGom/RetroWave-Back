@@ -3,7 +3,7 @@ import morgan from "morgan";
 import express from "express";
 import cors from "cors";
 import { pingController } from "./controllers/ping/pingController.js";
-import paths from "./paths/paths.js";
+import paths from "./utils/paths/paths.js";
 import {
   generalError,
   notFoundError,

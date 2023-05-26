@@ -5,6 +5,10 @@ import jwt, { type JwtPayload } from "jsonwebtoken";
 import { type UserCredentialsRequest } from "../../types";
 import User from "../../../database/models/User.js";
 import CustomError from "../../../CustomError/CustomError.js";
+import {
+  responseMessage,
+  responseStatusCode,
+} from "../../utils/responseData/responseData.js";
 
 export const loginUser = async (
   req: UserCredentialsRequest,
@@ -17,7 +21,10 @@ export const loginUser = async (
     const user = await User.findOne({ username }).exec();
 
     if (!user || !(await bcrypt.compare(user.password, password))) {
-      throw new CustomError(401, "Wrong credentials");
+      throw new CustomError(
+        responseStatusCode.unauthorized,
+        responseMessage.unauthorized
+      );
     }
 
     const tokenPayload: JwtPayload = {
@@ -28,7 +35,7 @@ export const loginUser = async (
     const token = jwt.sign(tokenPayload, process.env.JWT_SECRET!, {
       expiresIn: "3d",
     });
-    res.status(200).json({ token });
+    res.status(responseStatusCode.ok).json({ token });
   } catch (error) {
     next(error);
   }

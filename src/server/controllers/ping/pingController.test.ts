@@ -1,5 +1,6 @@
 import { type NextFunction, type Request, type Response } from "express";
 import { pingController } from "./pingController";
+import { responseStatusCode } from "../../utils/responseData/responseData";
 
 describe("Given a pingController", () => {
   describe("When it receives a request", () => {
@@ -11,7 +12,7 @@ describe("Given a pingController", () => {
       };
       const next = jest.fn();
 
-      const expectedStatusCode = 200;
+      const expectedStatusCode = responseStatusCode.ok;
       const message = "pong 🏓";
 
       pingController(req as Request, res as Response, next as NextFunction);

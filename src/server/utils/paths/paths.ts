@@ -1,4 +1,4 @@
-import { type PathsStructure } from "./types";
+import { type PathsStructure } from "../types";
 
 const paths: PathsStructure = {
   pingController: "/",
