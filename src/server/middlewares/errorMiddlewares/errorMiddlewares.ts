@@ -1,5 +1,7 @@
 import createDebug from "debug";
 import { type NextFunction, type Request, type Response } from "express";
+import { ValidationError } from "express-validation";
+import chalk from "chalk";
 import CustomError from "../../../CustomError/CustomError.js";
 import {
   responseMessage,
@@ -29,11 +31,24 @@ export const generalError = (
   res: Response,
   _next: NextFunction
 ) => {
-  debugError(error.message);
+  if (error instanceof ValidationError) {
+    const validationErrorMessages = error.details.body
+      ?.map((joiError) => joiError.message)
+      .join(" & ")
+      .replaceAll('"', "");
+
+    (error as CustomError).publicMessage = validationErrorMessages;
+
+    debugError(chalk.red(validationErrorMessages));
+  }
+
+  debugError(chalk.red(error.message));
 
   const statusCode = error.statusCode || responseStatusCode.internalServerError;
 
-  const message = error.statusCode ? error.message : "General Error";
+  const message = error.statusCode
+    ? error.message
+    : responseMessage.generalError;
 
   res.status(statusCode).json({ message });
 };

@@ -4,20 +4,21 @@ import jwt from "jsonwebtoken";
 import { type UserCredentialsRequest } from "../../types";
 import { loginUser } from "./userControllers";
 import User from "../../../database/models/User";
-import { user, userData } from "../../../mocks/mocks";
 import { token } from "morgan";
 import CustomError from "../../../CustomError/CustomError.js";
 import {
   responseMessage,
   responseStatusCode,
 } from "../../utils/responseData/responseData";
+import { userMock } from "../../../mocks/mocks";
+import { userDataMock } from "../../../mocks/mocks";
 
 beforeEach(() => {
   jest.clearAllMocks();
 });
 
 const req: Partial<UserCredentialsRequest> = {
-  body: user,
+  body: userMock,
 };
 const res: Pick<Response, "status" | "json"> = {
   status: jest.fn().mockReturnThis(),
@@ -31,7 +32,7 @@ describe("Given a loginUser controller", () => {
     jwt.sign = jest.fn().mockReturnValue(token);
 
     User.findOne = jest.fn().mockReturnValue({
-      exec: jest.fn().mockResolvedValue(userData),
+      exec: jest.fn().mockResolvedValue(userDataMock),
     });
     test("Then it should call the status method of the response with a 200", async () => {
       const expectedStatusCode = responseStatusCode.ok;
