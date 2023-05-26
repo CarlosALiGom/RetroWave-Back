@@ -16,6 +16,7 @@ describe("Given a getSynths synthsControllers", () => {
     const expectedStatusCode = responseStatusCode.ok;
 
     Synth.find = jest.fn().mockReturnValue({
+      limit: jest.fn().mockReturnThis(),
       exec: jest.fn().mockResolvedValue(synthsMock),
     });
 
@@ -45,6 +46,7 @@ describe("Given a getSynths synthsControllers", () => {
       const error = new Error("Fatal Error");
 
       Synth.find = jest.fn().mockReturnValue({
+        limit: jest.fn().mockReturnThis(),
         exec: jest.fn().mockRejectedValue(error),
       });
 

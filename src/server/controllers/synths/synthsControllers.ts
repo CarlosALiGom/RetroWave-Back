@@ -4,7 +4,7 @@ import { responseStatusCode } from "../../utils/responseData/responseData";
 
 const getSynths = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const synths = await Synth.find().exec();
+    const synths = await Synth.find().limit(10).exec();
 
     res.status(responseStatusCode.ok).json(synths);
   } catch (error: unknown) {
