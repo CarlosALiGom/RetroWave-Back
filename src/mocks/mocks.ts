@@ -10,6 +10,11 @@ export const userDbMock: UserCredentials = {
   password: "$2y$10$U.6UzF4tD9/AZapllmhqdOZZjBSEqD82QEzMoyRKtaIvPGxtz52t2",
 };
 
+export const wrongUserDbMock = {
+  name: "Judit",
+  word: "Judit",
+};
+
 export const userDataMock: UserDataStructure = {
   username: "Judit",
   password: "Judit",

@@ -8,7 +8,6 @@ module.exports = {
     "!src/index.ts",
     "!src/database/connectToDatabase.ts",
     "!src/loadEnviroments.ts",
-    "!src/database/models/User.ts",
   ],
   testPathIgnorePatterns: ["node_modules"],
 };

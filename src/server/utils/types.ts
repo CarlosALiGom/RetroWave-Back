@@ -6,6 +6,7 @@ export interface PathsStructure {
 
 export interface ResponseStatusCodeStructure {
   ok: number;
+  badRequest: number;
   unauthorized: number;
   notFound: number;
   internalServerError: number;
@@ -13,6 +14,7 @@ export interface ResponseStatusCodeStructure {
 
 export interface ResponseMessageStructure {
   ok: string;
+  badRequest: string;
   unauthorized: string;
   notFound: string;
   generalError: string;
