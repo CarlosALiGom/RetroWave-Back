@@ -22,3 +22,13 @@ export const synthsMock: SynthsStructure[] = [
     yearOfCreation: "1980",
   },
 ];
+
+export const synthMock: SynthsStructure[] = [
+  {
+    name: "tr 808",
+    brand: "Roland",
+    imageUrl: "Roland tr 808 image",
+    description: "Analog drum machine",
+    yearOfCreation: "1980",
+  },
+];

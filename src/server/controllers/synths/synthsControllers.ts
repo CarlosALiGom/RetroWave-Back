@@ -1,6 +1,6 @@
 import { type NextFunction, type Response, type Request } from "express";
-import Synth from "../../../database/models/Synths";
-import { responseStatusCode } from "../../utils/responseData/responseData";
+import Synth from "../../../database/models/Synths.js";
+import { responseStatusCode } from "../../utils/responseData/responseData.js";
 
 const getSynths = async (req: Request, res: Response, next: NextFunction) => {
   try {
