@@ -21,6 +21,9 @@ export const userDataMock: UserDataStructure = {
   _id: "JuditVives",
 };
 
+export const juditTokenMock =
+  "$2y$10$U.6UzF4tD9/AZapllmhqdOZZjBSEqD82QEzMoyRKtaIvPGxtz52t2";
+
 export const tokenMock = {
   token: "token",
 };
