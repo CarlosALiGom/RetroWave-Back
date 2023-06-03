@@ -4,6 +4,8 @@ export interface SynthsStructure {
   imageUrl: string;
   description: string;
   yearOfCreation: string;
+  type: string;
+  user: string;
 }
 
 export const synthsMock: SynthsStructure[] = [
@@ -13,6 +15,8 @@ export const synthsMock: SynthsStructure[] = [
     imageUrl: "Roland tb 303 image",
     description: "Analog bassline machine",
     yearOfCreation: "1983",
+    type: "analog",
+    user: "AZapllmhqdOZZjBSEqD82QEzMoyRK",
   },
   {
     name: "tr 808",
@@ -20,6 +24,8 @@ export const synthsMock: SynthsStructure[] = [
     imageUrl: "Roland tr 808 image",
     description: "Analog drum machine",
     yearOfCreation: "1980",
+    type: "analog",
+    user: "AZapllmhqdOZZjBSEqD82QEzMoyRK",
   },
 ];
 
@@ -30,5 +36,7 @@ export const synthMock: SynthsStructure[] = [
     imageUrl: "Roland tr 808 image",
     description: "Analog drum machine",
     yearOfCreation: "1980",
+    type: "analog",
+    user: "AZapllmhqdOZZjBSEqD82QEzMoyRK",
   },
 ];

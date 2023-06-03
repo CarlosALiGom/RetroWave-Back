@@ -1,4 +1,5 @@
-import { Schema, model } from "mongoose";
+import { Schema, Types, model } from "mongoose";
+import User from "./User";
 
 const synthSchema = new Schema({
   name: {
@@ -19,6 +20,15 @@ const synthSchema = new Schema({
   },
   yearOfCreation: {
     type: String,
+    required: true,
+  },
+  type: {
+    type: String,
+    required: true,
+  },
+  user: {
+    type: Types.ObjectId,
+    ref: User,
     required: true,
   },
 });
