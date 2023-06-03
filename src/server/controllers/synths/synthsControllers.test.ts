@@ -1,8 +1,9 @@
-import { type NextFunction, type Response, type Request } from "express";
+import { type NextFunction, type Response } from "express";
 import Synth from "../../../database/models/Synths";
 import { responseStatusCode } from "../../utils/responseData/responseData";
 import getSynths from "./synthsControllers";
 import { synthsMock } from "../../../mocks/synthMocks";
+import { type CustomRequest } from "../../types";
 
 describe("Given a getSynths synthsControllers", () => {
   const request = {};
@@ -22,7 +23,7 @@ describe("Given a getSynths synthsControllers", () => {
 
     test("Then it should call the status method of the response with a 200", async () => {
       await getSynths(
-        request as Request,
+        request as CustomRequest,
         response as Response,
         next as NextFunction
       );
@@ -32,7 +33,7 @@ describe("Given a getSynths synthsControllers", () => {
 
     test("Then it should call the status method of the response with a 200", async () => {
       await getSynths(
-        request as Request,
+        request as CustomRequest,
         response as Response,
         next as NextFunction
       );
@@ -51,7 +52,7 @@ describe("Given a getSynths synthsControllers", () => {
       });
 
       await getSynths(
-        request as Request,
+        request as CustomRequest,
         response as Response,
         next as NextFunction
       );
