@@ -12,7 +12,7 @@ describe("Given a getSynths synthsControllers", () => {
   };
   const next = jest.fn();
 
-  describe("When it receives a request with a request", () => {
+  describe("When it receives a request", () => {
     const expectedStatusCode = responseStatusCode.ok;
 
     Synth.find = jest.fn().mockReturnValue({
