@@ -11,7 +11,10 @@ import {
 import userRouter from "./routers/userRouter/userRouter.js";
 import synthRouter from "./routers/synthRouter/synthRouter.js";
 
-const allowedOrigins = process.env.ALLOWED_ORIGIN;
+const allowedOrigins = [
+  process.env.ALLOWED_ORIGIN_DEV!,
+  process.env.ALLOWED_ORIGIN_PROD!,
+];
 
 const options: cors.CorsOptions = {
   origin: allowedOrigins,
