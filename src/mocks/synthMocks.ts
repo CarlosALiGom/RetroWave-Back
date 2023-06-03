@@ -16,7 +16,7 @@ export const synthsMock: SynthsStructure[] = [
     description: "Analog bassline machine",
     yearOfCreation: "1983",
     type: "analog",
-    user: "AZapllmhqdOZZjBSEqD82QEzMoyRK",
+    user: "64707ddf2d09cd1540f0faaf",
   },
   {
     name: "tr 808",
@@ -25,7 +25,7 @@ export const synthsMock: SynthsStructure[] = [
     description: "Analog drum machine",
     yearOfCreation: "1980",
     type: "analog",
-    user: "AZapllmhqdOZZjBSEqD82QEzMoyRK",
+    user: "64707ddf2d09cd1540f0faaf",
   },
 ];
 
@@ -37,6 +37,6 @@ export const synthMock: SynthsStructure[] = [
     description: "Analog drum machine",
     yearOfCreation: "1980",
     type: "analog",
-    user: "AZapllmhqdOZZjBSEqD82QEzMoyRK",
+    user: "64707ddf2d09cd1540f0faaf",
   },
 ];
