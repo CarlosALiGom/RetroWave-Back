@@ -25,7 +25,7 @@ export const juditTokenMock =
   "$2y$10$U.6UzF4tD9/AZapllmhqdOZZjBSEqD82QEzMoyRKtaIvPGxtz52t2";
 
 export const adminTokenMock =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJzdWIiOiI2NDcwN2RkZjJkMDljZDE1NDBmMGZhYWYiLCJpYXQiOjE2ODU4MDA4MjYsImV4cCI6MTY4NjA2MDAyNn0.1oLyIOhMbMMjhsxuO0bUWxcSlGsKa_ScdCYBQrWG8y";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJzdWIiOiI2NDcwN2RkZjJkMDljZDE1NDBmMGZhYWYiLCJpYXQiOjE2ODYwNDk0MDR9.a6L3kwd2Mu1fVKHU4iuFuPINuhPKtEfmX3rarInSrhw";
 
 export const adminUserDbMock: UserCredentials = {
   username: "admin",
