@@ -1,0 +1,83 @@
+{
+  "info": {
+    "_postman_id": "13f7ea55-8e40-4fcb-ac32-9e712fa468bb",
+    "name": "RetroWave render",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "27032472"
+  },
+  "item": [
+    {
+      "name": "GET /",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://carlos-aliaga-final-project-back-202304.onrender.com/",
+          "protocol": "https",
+          "host": [
+            "carlos-aliaga-final-project-back-202304",
+            "onrender",
+            "com"
+          ],
+          "path": [""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"admin\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://carlos-aliaga-final-project-back-202304.onrender.com/user/login",
+          "protocol": "https",
+          "host": [
+            "carlos-aliaga-final-project-back-202304",
+            "onrender",
+            "com"
+          ],
+          "path": ["user", "login"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET /synths",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJzdWIiOiI2NDcwN2RkZjJkMDljZDE1NDBmMGZhYWYiLCJpYXQiOjE2ODU4Njk5OTgsImV4cCI6MTY4NjEyOTE5OH0.4E0f2rjjYGEh6bMyn2dk6lKJmxpykgUK83ikgsQKzf4",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://carlos-aliaga-final-project-back-202304.onrender.com/synths",
+          "protocol": "https",
+          "host": [
+            "carlos-aliaga-final-project-back-202304",
+            "onrender",
+            "com"
+          ],
+          "path": ["synths"]
+        }
+      },
+      "response": []
+    }
+  ]
+}

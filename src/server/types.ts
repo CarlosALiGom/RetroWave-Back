@@ -23,3 +23,10 @@ export type UserCredentialsRequest = Request<
 export interface CustomRequest extends Request {
   userId: string;
 }
+
+export interface IdParamsRequest extends Request {
+  userId: string;
+  params: {
+    synthId: string;
+  };
+}

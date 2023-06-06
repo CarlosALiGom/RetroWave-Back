@@ -40,3 +40,13 @@ export const synthMock: SynthsStructure[] = [
     user: "64707ddf2d09cd1540f0faaf",
   },
 ];
+
+export const synthMockSingle: SynthsStructure = {
+  name: "tr 808",
+  brand: "Roland",
+  imageUrl: "Roland tr 808 image",
+  description: "Analog drum machine",
+  yearOfCreation: "1980",
+  type: "analog",
+  user: "64707ddf2d09cd1540f0faaf",
+};

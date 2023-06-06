@@ -1,6 +1,6 @@
 import Router from "express";
 import auth from "../../middlewares/authMiddleware/authMiddleware.js";
-import getSynths from "../../controllers/synths/synthsControllers.js";
+import { getSynths } from "../../controllers/synths/synthsControllers.js";
 
 const synthRouter = Router();
 
