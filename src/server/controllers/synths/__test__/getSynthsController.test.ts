@@ -1,9 +1,9 @@
 import { type NextFunction, type Response } from "express";
-import Synth from "../../../database/models/Synths";
-import { responseStatusCode } from "../../utils/responseData/responseData";
-import getSynths from "./synthsControllers";
-import { synthsMock } from "../../../mocks/synthMocks";
-import { type CustomRequest } from "../../types";
+import { responseStatusCode } from "../../../utils/responseData/responseData";
+import { synthsMock } from "../../../../mocks/synthMocks";
+import { type CustomRequest } from "../../../types";
+import { getSynths } from "../synthsControllers.js";
+import Synth from "../../../../database/models/Synths";
 
 describe("Given a getSynths synthsControllers", () => {
   const request = {};
