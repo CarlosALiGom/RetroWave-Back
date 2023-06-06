@@ -35,7 +35,14 @@ const auth = (req: CustomRequest, res: Response, next: NextFunction) => {
 
     next();
   } catch (error: unknown) {
-    next(error);
+    const newError = new CustomError(
+      responseStatusCode.unauthorized,
+      responseMessage.badRequest
+    );
+    const customError =
+      (error as Error).name === "JsonWebTokenError" ? newError : error;
+
+    next(customError);
   }
 };
 
