@@ -25,6 +25,7 @@ export const deleteSynth = async (
 ) => {
   try {
     const { synthId } = req.params;
+
     const synthToDelete = await Synth.findById(synthId).exec();
 
     if (!synthToDelete) {
