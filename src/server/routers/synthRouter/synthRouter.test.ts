@@ -6,7 +6,11 @@ import mongoose from "mongoose";
 import Synth from "../../../database/models/Synths";
 import app from "../../app.js";
 import paths from "../../utils/paths/paths.js";
-import { adminTokenMock, adminUserDbMock } from "../../../mocks/mocks.js";
+import {
+  adminTokenMock,
+  adminUserDbMock,
+  juditTokenMock,
+} from "../../../mocks/mocks.js";
 import {
   responseMessage,
   responseStatusCode,
@@ -15,6 +19,7 @@ import {
   type SynthsStructure,
   synthsMock,
   synthsMockAdminId,
+  addSynthMock,
 } from "../../../mocks/synthMocks.js";
 import User from "../../../database/models/User.js";
 
@@ -62,10 +67,10 @@ describe("Given a GET '/synths' endpoint", () => {
 });
 
 describe("Given a DELETE '/synths/:synthsId' endpoint", () => {
+  beforeEach(async () => {
+    await Synth.create(synthsMock);
+  });
   describe("When it receives a request with param synthId valid", () => {
-    beforeEach(async () => {
-      await Synth.create(synthsMock);
-    });
     test("Then it should respond a status 200 and a message 'Synth deleted succesfully'", async () => {
       const expectedStatusCode = responseStatusCode.ok;
       const expectedMessage = "Synth deleted succesfully";
@@ -76,6 +81,48 @@ describe("Given a DELETE '/synths/:synthsId' endpoint", () => {
         .delete(`/synths/${routes[0]._id.toString()}`)
         .set("Authorization", `Bearer ${adminTokenMock}`)
         .expect(expectedStatusCode);
+
+      expect(response.body.message).toBe(expectedMessage);
+    });
+  });
+  describe("When it receives a request with an invalid id", () => {
+    test("Then it should respond with the error 404 and the message 'Synth not found'", async () => {
+      const expectedMessage = "Synth not found";
+      const expectedStatus = responseStatusCode.notFound;
+      const invalidId = "5fbd2a81f4b3c96d54d32c9a";
+
+      const response = await request(app)
+        .delete(`/synths/${invalidId}`)
+        .set("Authorization", `Bearer ${adminTokenMock}`)
+        .expect(expectedStatus);
+
+      expect(response.body.message).toBe(expectedMessage);
+    });
+  });
+});
+
+describe("Given a POST '/synths' endpoint", () => {
+  describe("When it receives a request with a synth and an auth token", () => {
+    test("Then it should respod with an status 200 and a message 'Synth added succesfully'", async () => {
+      const response = await request(app)
+        .post(paths.synths)
+        .set("Authorization", `Bearer ${adminTokenMock}`)
+        .send({ synth: addSynthMock })
+        .expect(responseStatusCode.ok);
+
+      expect(response.body).toHaveProperty("synth");
+    });
+  });
+
+  describe("When it receives a request with a synth and an auth token", () => {
+    test("Then it should respod with an status 200 and a message 'Synth added succesfully'", async () => {
+      const expectedMessage = "Validation Failed";
+
+      const response = await request(app)
+        .post(paths.synths)
+        .set("Authorization", `Bearer ${juditTokenMock}`)
+        .send({ synth: addSynthMock })
+        .expect(responseStatusCode.unauthorized);
 
       expect(response.body.message).toBe(expectedMessage);
     });
