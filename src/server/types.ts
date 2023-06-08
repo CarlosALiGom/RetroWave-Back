@@ -1,5 +1,6 @@
 import { type Request } from "express";
 import { type Types } from "mongoose";
+import { type SynthsStructure } from "../mocks/synthMocks";
 
 export interface UserCredentials {
   username: string;
@@ -20,13 +21,18 @@ export type UserCredentialsRequest = Request<
   UserCredentials
 >;
 
-export interface CustomRequest extends Request {
-  userId: string;
-}
-
 export interface IdParamsRequest extends Request {
   userId: string;
   params: {
     synthId: string;
+  };
+}
+
+export interface CustomRequest extends Request {
+  userId: string;
+}
+export interface AddSynthRequest extends CustomRequest {
+  body: {
+    synth: SynthsStructure;
   };
 }

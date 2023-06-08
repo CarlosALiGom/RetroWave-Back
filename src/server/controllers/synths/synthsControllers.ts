@@ -1,11 +1,12 @@
 import { type NextFunction, type Response, type Request } from "express";
 import Synth from "../../../database/models/Synths.js";
-import { type CustomRequest } from "../../types.js";
+import { type AddSynthRequest, type CustomRequest } from "../../types.js";
 import {
   responseMessage,
   responseStatusCode,
 } from "../../utils/responseData/responseData.js";
 import CustomError from "../../../CustomError/CustomError.js";
+import { Types } from "mongoose";
 
 export const getSynths = async (
   req: CustomRequest,
@@ -43,6 +44,32 @@ export const deleteSynth = async (
     res
       .status(responseStatusCode.ok)
       .json({ message: "Synth deleted succesfully" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const addSynth = async (
+  req: AddSynthRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { body, userId } = req;
+
+    if (!body.synth || !userId) {
+      throw new CustomError(
+        responseStatusCode.notFound,
+        "Synth or user invalid"
+      );
+    }
+
+    const newSynth = await Synth.create({
+      ...body.synth,
+      user: new Types.ObjectId(userId),
+    });
+
+    res.status(responseStatusCode.ok).json({ synth: newSynth });
   } catch (error) {
     next(error);
   }
