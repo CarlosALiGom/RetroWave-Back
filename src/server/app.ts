@@ -24,11 +24,11 @@ const app = express();
 
 app.use(cors(options));
 
-app.disable("x-powered-by");
-
 app.use(morgan("dev"));
 
 app.use(express.json());
+
+app.disable("x-powered-by");
 
 app.get(paths.pingController, pingController);
 
