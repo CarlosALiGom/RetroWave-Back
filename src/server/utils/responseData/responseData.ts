@@ -18,4 +18,5 @@ export const responseMessage: ResponseMessageStructure = {
   missingToken: "Missing Token",
   notFound: "Not found",
   generalError: "General Error",
+  synthNotFound: "Synth not found",
 };
