@@ -1,7 +1,11 @@
 import { type NextFunction, type Response, type Request } from "express";
 import Synth from "../../../database/models/Synths.js";
 import { type CustomRequest } from "../../types.js";
-import { responseStatusCode } from "../../utils/responseData/responseData.js";
+import {
+  responseMessage,
+  responseStatusCode,
+} from "../../utils/responseData/responseData.js";
+import CustomError from "../../../CustomError/CustomError.js";
 
 export const getSynths = async (
   req: CustomRequest,
@@ -29,9 +33,10 @@ export const deleteSynth = async (
     const synthToDelete = await Synth.findById(synthId).exec();
 
     if (!synthToDelete) {
-      return res
-        .status(responseStatusCode.notFound)
-        .json({ message: "Synth not found" });
+      throw new CustomError(
+        responseStatusCode.notFound,
+        responseMessage.synthNotFound
+      );
     }
 
     await Synth.findByIdAndDelete(synthId).exec();
@@ -39,8 +44,6 @@ export const deleteSynth = async (
       .status(responseStatusCode.ok)
       .json({ message: "Synth deleted succesfully" });
   } catch (error) {
-    error.message = "Error connecting to database to delete synth";
-
     next(error);
   }
 };

@@ -1,10 +1,14 @@
 import { type NextFunction, type Response } from "express";
-import { responseStatusCode } from "../../../utils/responseData/responseData";
+import {
+  responseMessage,
+  responseStatusCode,
+} from "../../../utils/responseData/responseData";
 import { deleteSynth } from "../synthsControllers";
 import Synth from "../../../../database/models/Synths";
 import { type IdParamsRequest } from "../../../types";
 import { synthMockSingle } from "../../../../mocks/synthMocks";
 import { Types } from "mongoose";
+import CustomError from "../../../../CustomError/CustomError";
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -51,15 +55,13 @@ describe("Given a deleteSynth synthsControllers", () => {
 
   describe("When it receives a request with an invalid id", () => {
     test("Then it should call the status method of the response with a 404 and the json with a message 'Synth not found'", async () => {
-      const expectedMessage = "Synth not found";
-      const expectedStatusCode = responseStatusCode.notFound;
+      const expectedError = new CustomError(
+        responseStatusCode.notFound,
+        responseMessage.synthNotFound
+      );
 
       Synth.findById = jest.fn().mockReturnValue({
-        exec: jest.fn().mockResolvedValue(undefined),
-      });
-
-      Synth.findByIdAndDelete = jest.fn().mockReturnValue({
-        exec: jest.fn().mockResolvedValue(synthMockSingle),
+        exec: jest.fn().mockResolvedValue(false),
       });
 
       await deleteSynth(
@@ -68,10 +70,7 @@ describe("Given a deleteSynth synthsControllers", () => {
         next as NextFunction
       );
 
-      expect(response.status).toHaveBeenCalledWith(expectedStatusCode);
-      expect(response.json).toHaveBeenCalledWith({
-        message: expectedMessage,
-      });
+      expect(next).toHaveBeenCalledWith(expectedError);
     });
   });
 

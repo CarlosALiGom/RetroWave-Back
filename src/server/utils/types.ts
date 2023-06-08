@@ -20,4 +20,5 @@ export interface ResponseMessageStructure {
   missingToken: string;
   notFound: string;
   generalError: string;
+  synthNotFound: string;
 }
