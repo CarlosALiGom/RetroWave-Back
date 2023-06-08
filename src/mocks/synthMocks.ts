@@ -10,6 +10,15 @@ export interface SynthsStructure {
   user: Types.ObjectId;
 }
 
+export interface AddSynthStructure {
+  name: string;
+  brand: string;
+  imageUrl: string;
+  description: string;
+  yearOfCreation: string;
+  type: string;
+}
+
 export const synthsMockAdminId = [
   {
     name: "tb 303",
@@ -72,4 +81,13 @@ export const synthMockSingle: SynthsStructure = {
   yearOfCreation: "1980",
   type: "analog",
   user: new Types.ObjectId(),
+};
+export const addSynthMock = {
+  name: "tr 808",
+  brand: "Roland",
+  imageUrl: "Roland tr 808 image",
+  description: "Analog drum machine",
+  yearOfCreation: "1980",
+  type: "analog",
+  id: "",
 };
