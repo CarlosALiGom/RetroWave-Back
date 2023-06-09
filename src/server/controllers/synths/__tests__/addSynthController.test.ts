@@ -28,7 +28,7 @@ const request: Partial<CustomRequest> = {
 describe("Given a addSynth controller", () => {
   describe("When it receives a request with a userId and a synth", () => {
     test("Then it should call the status method of the response with a 200 and the json with the synth'", async () => {
-      const expectedStatusCode = responseStatusCode.ok;
+      const expectedStatusCode = responseStatusCode.created;
 
       Synth.create = jest.fn().mockResolvedValue(synth);
 
