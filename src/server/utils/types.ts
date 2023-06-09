@@ -7,6 +7,7 @@ export interface PathsStructure {
 
 export interface ResponseStatusCodeStructure {
   ok: number;
+  created: number;
   badRequest: number;
   unauthorized: number;
   notFound: number;

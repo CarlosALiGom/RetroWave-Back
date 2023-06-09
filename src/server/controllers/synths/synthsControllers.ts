@@ -59,7 +59,7 @@ export const addSynth = async (
 
     if (!body.synth || !userId) {
       throw new CustomError(
-        responseStatusCode.notFound,
+        responseStatusCode.badRequest,
         "Synth or user invalid"
       );
     }
@@ -69,7 +69,7 @@ export const addSynth = async (
       user: new Types.ObjectId(userId),
     });
 
-    res.status(responseStatusCode.ok).json({ synth: newSynth });
+    res.status(responseStatusCode.created).json({ synth: newSynth });
   } catch (error) {
     next(error);
   }

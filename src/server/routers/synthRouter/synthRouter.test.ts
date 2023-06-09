@@ -108,7 +108,7 @@ describe("Given a POST '/synths' endpoint", () => {
         .post(paths.synths)
         .set("Authorization", `Bearer ${adminTokenMock}`)
         .send({ synth: addSynthMock })
-        .expect(responseStatusCode.ok);
+        .expect(responseStatusCode.created);
 
       expect(response.body).toHaveProperty("synth");
     });
