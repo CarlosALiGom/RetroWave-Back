@@ -88,6 +88,5 @@ export const addSynthMock = {
   imageUrl: "Roland tr 808 image",
   description: "Analog drum machine",
   yearOfCreation: "1980",
-  type: "analog",
-  id: "",
+  type: "Analog",
 };
