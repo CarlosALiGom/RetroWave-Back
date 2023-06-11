@@ -8,7 +8,7 @@ export const SynthSchema = {
       brand: Joi.string().required(),
       yearOfCreation: Joi.string().required(),
       imageUrl: Joi.string().required(),
-      type: Joi.string().valid("Analog", "Hibryd", "Digital").required(),
+      type: Joi.string().valid("Analog", "Hybrid", "Digital").required(),
       description: Joi.string().required(),
     }),
   }),
