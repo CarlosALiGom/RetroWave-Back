@@ -1,24 +1,38 @@
 import { type NextFunction, type Response } from "express";
 import { responseStatusCode } from "../../../utils/responseData/responseData";
-import { synthsMock } from "../../../../mocks/synthMocks";
+import { synthsMockAdminId } from "../../../../mocks/synthMocks";
 import { type CustomRequest } from "../../../types";
 import { getSynths } from "../synthsControllers.js";
 import Synth from "../../../../database/models/Synths";
 
 describe("Given a getSynths synthsControllers", () => {
-  const request = {};
+  const request: Partial<CustomRequest> = {
+    query: {
+      skip: "10",
+      limit: "20",
+    },
+  };
+  const totalSynths = 2;
   const response: Partial<Response> = {
     status: jest.fn().mockReturnThis(),
     json: jest.fn(),
   };
   const next = jest.fn();
 
+  Synth.where = jest.fn().mockReturnValue({
+    countDocuments: jest.fn().mockResolvedValue(totalSynths),
+  });
   describe("When it receives a request", () => {
     const expectedStatusCode = responseStatusCode.ok;
 
     Synth.find = jest.fn().mockReturnValue({
-      limit: jest.fn().mockReturnThis(),
-      exec: jest.fn().mockResolvedValue(synthsMock),
+      sort: jest.fn().mockReturnValue({
+        skip: jest.fn().mockReturnValue({
+          limit: jest.fn().mockReturnValue({
+            exec: jest.fn().mockResolvedValue(synthsMockAdminId),
+          }),
+        }),
+      }),
     });
 
     test("Then it should call the status method of the response with a 200", async () => {
@@ -31,14 +45,17 @@ describe("Given a getSynths synthsControllers", () => {
       expect(response.status).toHaveBeenCalledWith(expectedStatusCode);
     });
 
-    test("Then it should call the status method of the response with a 200", async () => {
+    test("Then it should call the json method of the response with a synt list", async () => {
       await getSynths(
         request as CustomRequest,
         response as Response,
         next as NextFunction
       );
 
-      expect(response.json).toBeCalledWith(synthsMock);
+      expect(response.json).toBeCalledWith({
+        synths: synthsMockAdminId,
+        totalSynths,
+      });
     });
   });
 
@@ -47,8 +64,13 @@ describe("Given a getSynths synthsControllers", () => {
       const error = new Error("Fatal Error");
 
       Synth.find = jest.fn().mockReturnValue({
-        limit: jest.fn().mockReturnThis(),
-        exec: jest.fn().mockRejectedValue(error),
+        sort: jest.fn().mockReturnValue({
+          skip: jest.fn().mockReturnValue({
+            limit: jest.fn().mockReturnValue({
+              exec: jest.fn().mockRejectedValue(error),
+            }),
+          }),
+        }),
       });
 
       await getSynths(
