@@ -15,14 +15,22 @@ export const getSynths = async (
 ) => {
   const {
     userId,
-    query: { skip, limit },
+    query: { skip, limit, type },
   } = req;
   const newLimit = Number(limit);
   const newSkip = Number(skip) * newLimit;
-  const totalSynths = await Synth.where({ user: userId }).countDocuments();
+  let synthQuery = {};
+
+  if (type) {
+    synthQuery = { user: userId, type };
+  } else {
+    synthQuery = { user: userId };
+  }
+
+  const totalSynths = await Synth.where(synthQuery).countDocuments();
 
   try {
-    const synths = await Synth.find({ user: userId })
+    const synths = await Synth.find(synthQuery)
       .sort({ _id: -1 })
       .skip(newSkip)
       .limit(newLimit)

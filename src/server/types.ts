@@ -33,6 +33,7 @@ export interface CustomRequest extends Request {
   query: {
     skip: string;
     limit: string;
+    type?: "Analog" | "Hybrid" | "Digital";
   };
 }
 export interface AddSynthRequest extends CustomRequest {
