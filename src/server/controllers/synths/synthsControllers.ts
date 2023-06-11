@@ -13,11 +13,22 @@ export const getSynths = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { userId } = req;
-  try {
-    const synths = await Synth.find({ user: userId }).limit(10).exec();
+  const {
+    userId,
+    query: { skip, limit },
+  } = req;
+  const newLimit = Number(limit);
+  const newSkip = Number(skip) * newLimit;
+  const totalSynths = await Synth.where({ user: userId }).countDocuments();
 
-    res.status(responseStatusCode.ok).json(synths);
+  try {
+    const synths = await Synth.find({ user: userId })
+      .sort({ _id: -1 })
+      .skip(newSkip)
+      .limit(newLimit)
+      .exec();
+
+    res.status(responseStatusCode.ok).json({ synths, totalSynths });
   } catch (error: unknown) {
     next(error);
   }
