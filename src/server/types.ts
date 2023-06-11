@@ -30,6 +30,10 @@ export interface IdParamsRequest extends Request {
 
 export interface CustomRequest extends Request {
   userId: string;
+  query: {
+    skip: string;
+    limit: string;
+  };
 }
 export interface AddSynthRequest extends CustomRequest {
   body: {

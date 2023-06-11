@@ -16,7 +16,6 @@ import {
   responseStatusCode,
 } from "../../utils/responseData/responseData.js";
 import {
-  type SynthsStructure,
   synthsMock,
   synthsMockAdminId,
   addSynthMock,
@@ -47,12 +46,12 @@ describe("Given a GET '/synths' endpoint", () => {
   });
   describe("When it receives a request with an authorized header", () => {
     test("Then it should responde with a 200 status and a synths list", async () => {
-      const response: { body: SynthsStructure[] } = await request(app)
+      const response = await request(app)
         .get(paths.synths)
         .set("Authorization", `Bearer ${adminTokenMock}`)
         .expect(responseStatusCode.ok);
 
-      expect(response.body).toHaveLength(2);
+      expect(response.body.synths).toHaveLength(2);
     });
   });
   describe("When it receives a request with an invalid token", () => {
@@ -114,8 +113,8 @@ describe("Given a POST '/synths' endpoint", () => {
     });
   });
 
-  describe("When it receives a request with a synth and an auth token", () => {
-    test("Then it should respod with an status 200 and a message 'Synth added succesfully'", async () => {
+  describe("When it receives a request with a synth and an invalid token", () => {
+    test("Then it should respod with an status 401 and a message 'Validation Failed'", async () => {
       const expectedMessage = "Validation Failed";
 
       const response = await request(app)
