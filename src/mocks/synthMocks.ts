@@ -10,6 +10,10 @@ export interface SynthsStructure {
   user: Types.ObjectId;
 }
 
+export interface SynthIdsStructure extends SynthsStructure {
+  id: string;
+}
+
 export interface AddSynthStructure {
   name: string;
   brand: string;

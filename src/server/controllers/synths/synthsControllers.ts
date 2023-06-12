@@ -93,3 +93,26 @@ export const addSynth = async (
     next(error);
   }
 };
+
+export const getSelectedSynth = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { synthId } = req.params;
+
+  try {
+    const synth = await Synth.findById(synthId).exec();
+
+    if (!synth) {
+      throw new CustomError(
+        responseStatusCode.notFound,
+        responseMessage.synthNotFound
+      );
+    }
+
+    res.status(responseStatusCode.ok).json({ synth });
+  } catch (error: unknown) {
+    next(error);
+  }
+};
