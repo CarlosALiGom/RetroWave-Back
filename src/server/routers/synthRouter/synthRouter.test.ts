@@ -65,7 +65,7 @@ describe("Given a GET '/synths' endpoint", () => {
   });
 });
 
-describe("Given a DELETE '/synths/:synthsId' endpoint", () => {
+describe("Given a DELETE '/synths/:synthId' endpoint", () => {
   beforeEach(async () => {
     await Synth.create(synthsMock);
   });
@@ -74,10 +74,10 @@ describe("Given a DELETE '/synths/:synthsId' endpoint", () => {
       const expectedStatusCode = responseStatusCode.ok;
       const expectedMessage = "Synth deleted succesfully";
 
-      const routes = await Synth.find().exec();
+      const synths = await Synth.find().exec();
 
       const response = await request(app)
-        .delete(`/synths/${routes[0]._id.toString()}`)
+        .delete(`/synths/${synths[0]._id.toString()}`)
         .set("Authorization", `Bearer ${adminTokenMock}`)
         .expect(expectedStatusCode);
 
@@ -122,6 +122,42 @@ describe("Given a POST '/synths' endpoint", () => {
         .set("Authorization", `Bearer ${juditTokenMock}`)
         .send({ synth: addSynthMock })
         .expect(responseStatusCode.unauthorized);
+
+      expect(response.body.message).toBe(expectedMessage);
+    });
+  });
+});
+
+describe("Given a GET '/synths/:synthId' endpoint", () => {
+  beforeEach(async () => {
+    await Synth.create(synthsMock);
+  });
+  describe("When it receives a request with param synthId valid", () => {
+    test("Then it should respond a status 200 and the synth that match the synthId inside and object with a property 'synth'", async () => {
+      const expectedStatusCode = responseStatusCode.ok;
+      const expectedProperty = "synth";
+
+      const synths = await Synth.find().exec();
+
+      const response = await request(app)
+        .get(`/synths/${synths[0]._id.toString()}`)
+        .set("Authorization", `Bearer ${adminTokenMock}`)
+        .expect(expectedStatusCode);
+
+      expect(response.body).toHaveProperty(expectedProperty);
+    });
+  });
+
+  describe("When it receives a request with an invalid id", () => {
+    test("Then it should respond with the error 404 and the message 'Synth not found'", async () => {
+      const expectedMessage = "Synth not found";
+      const expectedStatus = responseStatusCode.notFound;
+      const invalidId = "5fbd2a81f4b3c96d54d32c9a";
+
+      const response = await request(app)
+        .get(`/synths/${invalidId}`)
+        .set("Authorization", `Bearer ${adminTokenMock}`)
+        .expect(expectedStatus);
 
       expect(response.body.message).toBe(expectedMessage);
     });

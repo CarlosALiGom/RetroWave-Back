@@ -36,6 +36,14 @@ describe("Given a getSynths synthsControllers", () => {
     });
 
     test("Then it should call the status method of the response with a 200", async () => {
+      const request: Partial<CustomRequest> = {
+        query: {
+          skip: "10",
+          limit: "20",
+          type: "Analog",
+        },
+      };
+
       await getSynths(
         request as CustomRequest,
         response as Response,
