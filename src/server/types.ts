@@ -41,3 +41,13 @@ export interface AddSynthRequest extends CustomRequest {
     synth: SynthsStructure;
   };
 }
+
+export interface UpdateSynthRequest extends Request {
+  userId: string;
+  body: {
+    synth: SynthsStructure;
+  };
+  params: {
+    synthId: string;
+  };
+}

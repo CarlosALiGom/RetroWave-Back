@@ -23,6 +23,28 @@ export interface AddSynthStructure {
   type: string;
 }
 
+export interface UpdateSynthStructure {
+  name: string;
+  brand: string;
+  imageUrl: string;
+  description: string;
+  yearOfCreation: string;
+  type: string;
+  user: string;
+  id: string;
+}
+
+export interface UpdateObjectIdSynthStructure {
+  name: string;
+  brand: string;
+  imageUrl: string;
+  description: string;
+  yearOfCreation: string;
+  type: string;
+  user: Types.ObjectId;
+  id: Types.ObjectId;
+}
+
 export const synthsMockAdminId = [
   {
     name: "tb 303",
@@ -93,4 +115,26 @@ export const addSynthMock = {
   description: "Analog drum machine",
   yearOfCreation: "1980",
   type: "Analog",
+};
+
+export const updateSynthMock: UpdateSynthStructure = {
+  name: "tr 808",
+  brand: "Roland",
+  imageUrl: "Roland tr 808 image",
+  description: "Analog drum machine",
+  yearOfCreation: "1980",
+  type: "analog",
+  user: "64707ddf2d09cd1540f0faaf",
+  id: "648482e21423dff145f68c59",
+};
+
+export const updateObjectIdSynthMock: UpdateObjectIdSynthStructure = {
+  name: "tr 808",
+  brand: "Roland",
+  imageUrl: "Roland tr 808 image",
+  description: "Analog drum machine",
+  yearOfCreation: "1980",
+  type: "analog",
+  user: new Types.ObjectId(),
+  id: new Types.ObjectId(),
 };
