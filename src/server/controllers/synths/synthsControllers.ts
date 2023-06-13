@@ -1,6 +1,10 @@
 import { type NextFunction, type Response, type Request } from "express";
 import Synth from "../../../database/models/Synths.js";
-import { type AddSynthRequest, type CustomRequest } from "../../types.js";
+import {
+  type UpdateSynthRequest,
+  type AddSynthRequest,
+  type CustomRequest,
+} from "../../types.js";
 import {
   responseMessage,
   responseStatusCode,
@@ -87,7 +91,6 @@ export const addSynth = async (
       ...body.synth,
       user: new Types.ObjectId(userId),
     });
-
     res.status(responseStatusCode.created).json({ synth: newSynth });
   } catch (error) {
     next(error);
@@ -113,6 +116,36 @@ export const getSelectedSynth = async (
 
     res.status(responseStatusCode.ok).json({ synth });
   } catch (error: unknown) {
+    next(error);
+  }
+};
+
+export const updateSynth = async (
+  req: UpdateSynthRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const {
+      userId,
+      params: { synthId },
+      body: { synth },
+    } = req;
+
+    if (synth && synthId) {
+      await Synth.findByIdAndUpdate(
+        { _id: new Types.ObjectId(synthId) },
+        {
+          ...synth,
+          user: new Types.ObjectId(userId),
+          id: new Types.ObjectId(synthId),
+        }
+      );
+      res
+        .status(responseStatusCode.ok)
+        .json({ message: "Synth updated succesfully" });
+    }
+  } catch (error) {
     next(error);
   }
 };
