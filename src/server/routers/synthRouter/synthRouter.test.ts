@@ -19,6 +19,7 @@ import {
   synthsMock,
   synthsMockAdminId,
   addSynthMock,
+  updateObjectIdSynthMock,
 } from "../../../mocks/synthMocks.js";
 import User from "../../../database/models/User.js";
 
@@ -160,6 +161,28 @@ describe("Given a GET '/synths/:synthId' endpoint", () => {
         .expect(expectedStatus);
 
       expect(response.body.message).toBe(expectedMessage);
+    });
+  });
+});
+
+describe("Given a PUT '/synths/:synthId' endpoint", () => {
+  beforeEach(async () => {
+    await Synth.create(synthsMock);
+  });
+  describe("When it receives a request with valids param synthId and synth", () => {
+    test("Then it should respond a status 200 and a message 'Synth updated succesfully'", async () => {
+      const expectedStatusCode = responseStatusCode.ok;
+      const expectedMessage = "Synth updated succesfully";
+
+      const synths = await Synth.find().exec();
+
+      const response = await request(app)
+        .put(`/synths/${synths[0]._id.toString()}`)
+        .set("Authorization", `Bearer ${adminTokenMock}`)
+        .send({ synth: updateObjectIdSynthMock })
+        .expect(expectedStatusCode);
+
+      expect(response.body).toStrictEqual({ message: expectedMessage });
     });
   });
 });
