@@ -25,7 +25,7 @@
       "response": []
     },
     {
-      "name": "New Request",
+      "name": "POST /user/login",
       "request": {
         "method": "POST",
         "header": [],
@@ -75,6 +75,116 @@
             "com"
           ],
           "path": ["synths"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE /synths/:synthId",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJzdWIiOiI2NDcwN2RkZjJkMDljZDE1NDBmMGZhYWYiLCJpYXQiOjE2ODY1MTk3MDgsImV4cCI6MTY4Njc3ODkwOH0.p2HrkjPHi8pGlJ42xduncZLHfAw6pk3mBPGl1omeFbg",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://carlos-aliaga-final-project-back-202304.onrender.com/synths/648482e21423dff145f68c58",
+          "protocol": "https",
+          "host": [
+            "carlos-aliaga-final-project-back-202304",
+            "onrender",
+            "com"
+          ],
+          "path": ["synths", "648482e21423dff145f68c58"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST /synths",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJzdWIiOiI2NDcwN2RkZjJkMDljZDE1NDBmMGZhYWYiLCJpYXQiOjE2ODY1MTk3MDgsImV4cCI6MTY4Njc3ODkwOH0.p2HrkjPHi8pGlJ42xduncZLHfAw6pk3mBPGl1omeFbg",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\r\n{\r\n    \"synth\": {\r\n    \"name\": \"tr 4408\",\r\n    \"brand\": \"Rol12312and\",\r\n    \"imageUrl\": \"Rola12321nd tr 808 image\",\r\n    \"yearOfCreation\": \"19823120\",\r\n    \"type\": \"Hybrid\",\r\n    \"description\": \"Anal12312og drum machine\"\r\n}\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://carlos-aliaga-final-project-back-202304.onrender.com/synths",
+          "protocol": "https",
+          "host": [
+            "carlos-aliaga-final-project-back-202304",
+            "onrender",
+            "com"
+          ],
+          "path": ["synths"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "/synths/:synthId",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "/synths/synthId",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJzdWIiOiI2NDcwN2RkZjJkMDljZDE1NDBmMGZhYWYiLCJpYXQiOjE2ODY1NTIyMTMsImV4cCI6MTY4NjgxMTQxM30.TmraiU4OMN0-9J685lLi4RcU-AjYWWPb1suJlh7tDMQ",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"synth\": {\r\n        \"name\": \"tb-3NoPUCMESSS\",\r\n        \"brand\": \"BRsdfsdfsdfsd\",\r\n        \"imageUrl\": \"https://media.discordapp.net/attachments/1116096712147222663/1117091270498713750/tb-303.webp?width=724&height=585\",\r\n        \"description\": \"The Roland TB-303 Bass Line is a bass synthesizer known for its distinctive squelchy sound and its influence on the development of electronic music genres like acid house.\",\r\n        \"yearOfCreation\": \"1982\",\r\n        \"type\": \"Analog\",\r\n        \"user\": \"64707ddf2d09cd1540f0faaf\",\r\n        \"id\": \"648482e21423dff145f68c59\"\r\n    }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://carlos-aliaga-final-project-back-202304.onrender.com/synths/648482e21423dff145f68c59",
+          "protocol": "https",
+          "host": [
+            "carlos-aliaga-final-project-back-202304",
+            "onrender",
+            "com"
+          ],
+          "path": ["synths", "648482e21423dff145f68c59"]
         }
       },
       "response": []
