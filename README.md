@@ -126,9 +126,9 @@
 
 ### request:
 
-#### body:
-
 - { auth: { bearer: { token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJzdWIiOiI2NDcwN2RkZjJkMDljZDE1NDBmMGZhYWYiLCJpYXQiOjE2ODY1MTk3MDgsImV4cCI6MTY4Njc3ODkwOH0.p2HrkjPHi8pGlJ42xduncZLHfAw6pk3mBPGl1omeFbg"}}}
+
+#### body:
 
 - {
   "synth":
@@ -156,4 +156,68 @@
   "user": "64707ddf2d09cd1540f0faaf",
   "id": "648641d8dbe68344b7162de1"
   }
+  }
+
+## <u>Get Selected Synth</u>
+
+### method:
+
+- GET
+
+### url:
+
+- https://carlos-aliaga-final-project-back-202304.onrender.com/synths/:synthId
+
+### request:
+
+- { auth: { bearer: { token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJzdWIiOiI2NDcwN2RkZjJkMDljZDE1NDBmMGZhYWYiLCJpYXQiOjE2ODY1MTk3MDgsImV4cCI6MTY4Njc3ODkwOH0.p2HrkjPHi8pGlJ42xduncZLHfAw6pk3mBPGl1omeFbg"}}}
+
+### response:
+
+- {
+  "synth": {
+  "name": "TESTIAO POR MARIO",
+  "brand": "Teenage Engineering",
+  "imageUrl": "https://media.discordapp.net/attachments/1116096712147222663/1117082209006919690/pocket-operators.webp?width=724&height=585",
+  "description": "The Pocket Operator PO-16 is a compact and portable synthesizer and sequencer. It offers a range of built-in sounds and effects, allowing for fun and creative music-making on the go. With its pocket-sized design, intuitive interface, and powerful sound engine, the PO-16 is a popular choice among electronic music enthusiasts and beginners alike.",
+  "yearOfCreation": "2015",
+  "type": "Digital",
+  "user": "64707ddf2d09cd1540f0faaf",
+  "id": "64884d6d72b9f835501e2fe1"
+  }
+  }
+
+## <u>Update Synth</u>
+
+### method:
+
+- PUT
+
+### url:
+
+- https://carlos-aliaga-final-project-back-202304.onrender.com/synths/:synthId
+
+### request:
+
+- { auth: { bearer: { token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiYWRtaW4iLCJzdWIiOiI2NDcwN2RkZjJkMDljZDE1NDBmMGZhYWYiLCJpYXQiOjE2ODY1MTk3MDgsImV4cCI6MTY4Njc3ODkwOH0.p2HrkjPHi8pGlJ42xduncZLHfAw6pk3mBPGl1omeFbg"}}}
+
+#### body:
+
+- {
+  "synth": {
+  "name": "TESTIAO POR MARIO",
+  "brand": "Teenage Engineering",
+  "imageUrl": "https://media.discordapp.net/attachments/1116096712147222663/1117082209006919690/pocket-operators.webp?width=724&height=585",
+  "description": "The Pocket Operator PO-16 is a compact and portable synthesizer and sequencer. It offers a range of built-in sounds and effects, allowing for fun and creative music-making on the go. With its pocket-sized design, intuitive interface, and powerful sound engine, the PO-16 is a popular choice among electronic music enthusiasts and beginners alike.",
+  "yearOfCreation": "2015",
+  "type": "Digital",
+  "user": "64707ddf2d09cd1540f0faaf",
+  "id": "64884d6d72b9f835501e2fe1"
+  }
+  }
+
+### response:
+
+- {
+  "message": "Synth updated succesfully"
   }
